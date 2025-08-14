@@ -53,10 +53,10 @@
         <p>
             <?php echo esc_html(get_theme_mod('footer_copy_text', 'Todos los derechos reservados')); ?>
             <?php if ($privacy = get_theme_mod('footer_privacy_url')) : ?>
-                · <a href="<?php echo esc_url($privacy); ?>"><?php _e('Política de privacidad', 'mi-tema'); ?></a>
+                · <a href="<?php echo esc_url($privacy); ?>"><?php _e('Política de privacidad', 'veltia-base'); ?></a>
             <?php endif; ?>
             <?php if ($cookies = get_theme_mod('footer_cookies_url')) : ?>
-                · <a href="<?php echo esc_url($cookies); ?>"><?php _e('Configuración cookies', 'mi-tema'); ?></a>
+                · <a href="<?php echo esc_url($cookies); ?>"><?php _e('Configuración cookies', 'veltia-base'); ?></a>
             <?php endif; ?>
         </p>
     </div>
