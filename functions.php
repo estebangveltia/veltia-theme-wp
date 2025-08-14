@@ -1,5 +1,5 @@
 <?php
-function mi_tema_setup() {
+function veltia_setup() {
     // Soporte para <title> dinámico
     add_theme_support('title-tag');
 
@@ -22,13 +22,13 @@ function mi_tema_setup() {
     // Soporte para refresco selectivo en widgets
     add_theme_support('customize-selective-refresh-widgets');
 }
-add_action('after_setup_theme', 'mi_tema_setup');
+add_action('after_setup_theme', 'veltia_setup');
 
 
 // ============================
 // Áreas de widgets
 // ============================
-function mi_tema_widgets_init() {
+function veltia_widgets_init() {
     register_sidebar(array(
         'name'          => __('Footer 1', 'veltia-base'),
         'id'            => 'footer-1',
@@ -59,13 +59,13 @@ function mi_tema_widgets_init() {
         'after_title'   => '</h2>',
     ));
 }
-add_action('widgets_init', 'mi_tema_widgets_init');
+add_action('widgets_init', 'veltia_widgets_init');
 
 
 // ============================
 // Customizer: HERO DE INICIO
 // ============================
-function mi_tema_customize_hero($wp_customize) {
+function veltia_customize_hero($wp_customize) {
     $wp_customize->add_section('hero_section', array(
         'title'    => __('Hero de Inicio', 'veltia-base'),
         'priority' => 30,
@@ -202,13 +202,13 @@ function mi_tema_customize_hero($wp_customize) {
         ));
     }
 }
-add_action('customize_register', 'mi_tema_customize_hero');
+add_action('customize_register', 'veltia_customize_hero');
 
 
 // ============================
 // CSS dinámico desde Customizer
 // ============================
-function mi_tema_customizer_css() {
+function veltia_customizer_css() {
     $hero_grad1 = get_theme_mod('hero_gradient_color1', 'rgba(0,0,0,0.5)');
     $hero_grad2 = get_theme_mod('hero_gradient_color2', 'rgba(0,0,0,0.3)');
     $hero_grad3 = get_theme_mod('hero_gradient_color3', 'rgba(0,0,0,0.6)');
@@ -228,29 +228,29 @@ function mi_tema_customizer_css() {
     </style>
     <?php
 }
-add_action('wp_head', 'mi_tema_customizer_css');
+add_action('wp_head', 'veltia_customizer_css');
 
 
 // ============================
 // Cargar estilos y scripts
 // ============================
-function mi_tema_estilos() {
+function veltia_estilos() {
     wp_enqueue_style('veltia-base-style', get_stylesheet_uri(), array(), wp_get_theme()->get('Version'));
     wp_enqueue_style('veltia-base-google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap', array(), null);
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css', array(), null);
     // Main theme stylesheet for custom components.
     wp_enqueue_style('veltia-main', get_template_directory_uri() . '/assets/css/main.css', array(), wp_get_theme()->get('Version'));
 }
-add_action('wp_enqueue_scripts', 'mi_tema_estilos');
+add_action('wp_enqueue_scripts', 'veltia_estilos');
 
-function mi_tema_scripts() {
+function veltia_scripts() {
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js', array(), null, true);
     wp_enqueue_script('menu-toggle', get_template_directory_uri() . '/js/menu-toggle.js', array(), null, true);
     wp_enqueue_script('hero-js', get_template_directory_uri() . '/js/hero.js', array('swiper-js'), null, true);
     wp_enqueue_script('header-scroll', get_template_directory_uri() . '/js/header-scroll.js', array(), null, true);
     wp_localize_script('hero-js', 'heroData', ['themeUrl' => get_template_directory_uri()]);
 }
-add_action('wp_enqueue_scripts', 'mi_tema_scripts');
+add_action('wp_enqueue_scripts', 'veltia_scripts');
 
 // Enqueue assets for partners carousel
 function veltia_partners_assets() {
@@ -264,7 +264,7 @@ add_action( 'wp_enqueue_scripts', 'veltia_partners_assets' );
 /**
  * Mostrar / Ocultar título del sitio desde el Customizer
  */
-function mi_tema_customize_site_title($wp_customize) {
+function veltia_customize_site_title($wp_customize) {
     $wp_customize->add_setting('mostrar_titulo_sitio', array(
         'default'           => true,
         'transport'         => 'refresh',
@@ -277,13 +277,13 @@ function mi_tema_customize_site_title($wp_customize) {
         'type'     => 'checkbox',
     ));
 }
-add_action('customize_register', 'mi_tema_customize_site_title');
+add_action('customize_register', 'veltia_customize_site_title');
 
 
 // ============================
 // Customizer: Menú CTA y Footer
 // ============================
-function mi_tema_customize_menu_footer($wp_customize) {
+function veltia_customize_menu_footer($wp_customize) {
     // Sección para el botón CTA del menú
     $wp_customize->add_section('menu_cta_section', array(
         'title'    => __('Botón CTA del Menú', 'veltia-base'),
@@ -372,7 +372,7 @@ function mi_tema_customize_menu_footer($wp_customize) {
         'type'    => 'url',
     ));
 }
-add_action('customize_register', 'mi_tema_customize_menu_footer');
+add_action('customize_register', 'veltia_customize_menu_footer');
 
 // Load customizer options for CTA and logo.
 require_once get_template_directory() . '/inc/customizer.php';
