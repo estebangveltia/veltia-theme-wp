@@ -14,7 +14,8 @@
             <?php
             if (function_exists('the_custom_logo') && has_custom_logo()) {
                 the_custom_logo();
-            } elseif (get_theme_mod('display_site_title', true)) {
+            }
+            if (get_theme_mod('display_site_title', true)) {
                 ?>
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="site-title"><?php bloginfo('name'); ?></a>
                 <?php
