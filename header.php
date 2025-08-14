@@ -41,21 +41,43 @@
             <?php if ( get_theme_mod( 'cta_enable' ) && get_theme_mod( 'cta_text' ) && get_theme_mod( 'cta_url' ) ) : ?>
                 <?php
                 $cta_classes = array( 'btn-cta' );
-                $cta_classes[] = 'is-' . get_theme_mod( 'cta_style_variant', 'filled' );
+                $cta_variant = get_theme_mod( 'cta_style_variant', 'filled' );
+                $cta_classes[] = 'is-' . $cta_variant;
                 $cta_classes[] = 'is-' . get_theme_mod( 'cta_shape', 'pill' );
                 $cta_classes[] = 'is-' . get_theme_mod( 'cta_size', 'md' );
                 $cta_classes = array_map( 'sanitize_html_class', $cta_classes );
                 $cta_class_attr = implode( ' ', $cta_classes );
 
                 $cta_style = '';
-                $cta_bg    = get_theme_mod( 'cta_color_bg' );
-                $cta_text_color = get_theme_mod( 'cta_color_text' );
-                if ( $cta_bg ) {
-                    $cta_style .= 'background-color:' . esc_attr( $cta_bg ) . ';border-color:' . esc_attr( $cta_bg ) . ';';
+                $cta_bg = sanitize_hex_color( get_theme_mod( 'cta_color_bg' ) );
+                $cta_text_color = sanitize_hex_color( get_theme_mod( 'cta_color_text' ) );
+
+                switch ( $cta_variant ) {
+                    case 'outline':
+                        if ( $cta_bg ) {
+                            $cta_style .= 'border-color:' . esc_attr( $cta_bg ) . ';';
+                        }
+                        if ( $cta_text_color ) {
+                            $cta_style .= 'color:' . esc_attr( $cta_text_color ) . ';';
+                        }
+                        $cta_style .= 'background-color:transparent;';
+                        break;
+                    case 'ghost':
+                        if ( $cta_text_color ) {
+                            $cta_style .= 'color:' . esc_attr( $cta_text_color ) . ';';
+                        }
+                        break;
+                    case 'filled':
+                    default:
+                        if ( $cta_bg ) {
+                            $cta_style .= 'background-color:' . esc_attr( $cta_bg ) . ';border-color:' . esc_attr( $cta_bg ) . ';';
+                        }
+                        if ( $cta_text_color ) {
+                            $cta_style .= 'color:' . esc_attr( $cta_text_color ) . ';';
+                        }
+                        break;
                 }
-                if ( $cta_text_color ) {
-                    $cta_style .= 'color:' . esc_attr( $cta_text_color ) . ';';
-                }
+
                 $cta_style_attr = $cta_style ? ' style="' . esc_attr( $cta_style ) . '"' : '';
 
                 $cta_target = get_theme_mod( 'cta_target', '_self' );
