@@ -238,6 +238,8 @@ function mi_tema_estilos() {
     wp_enqueue_style('mi-tema-style', get_stylesheet_uri(), array(), wp_get_theme()->get('Version'));
     wp_enqueue_style('mi-tema-google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap', array(), null);
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css', array(), null);
+    // Main theme stylesheet for custom components.
+    wp_enqueue_style('veltia-main', get_template_directory_uri() . '/assets/css/main.css', array(), wp_get_theme()->get('Version'));
 }
 add_action('wp_enqueue_scripts', 'mi_tema_estilos');
 
@@ -253,7 +255,6 @@ add_action('wp_enqueue_scripts', 'mi_tema_scripts');
 // Enqueue assets for partners carousel
 function veltia_partners_assets() {
     if ( is_front_page() ) {
-        wp_enqueue_style( 'veltia-partners', get_template_directory_uri() . '/assets/css/main.css', array(), wp_get_theme()->get( 'Version' ) );
         wp_enqueue_script( 'veltia-partners', get_template_directory_uri() . '/assets/js/main.js', array( 'swiper-js' ), wp_get_theme()->get( 'Version' ), true );
     }
 }
@@ -372,3 +373,24 @@ function mi_tema_customize_menu_footer($wp_customize) {
     ));
 }
 add_action('customize_register', 'mi_tema_customize_menu_footer');
+
+// Load customizer options for CTA and logo.
+require_once get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Add inline styles for logo dimensions based on Customizer settings.
+ */
+function veltia_custom_logo_css() {
+    $desktop = absint( get_theme_mod( 'logo_max_height_header_desktop', 56 ) );
+    $mobile  = absint( get_theme_mod( 'logo_max_height_header_mobile', 40 ) );
+    $width   = absint( get_theme_mod( 'logo_max_width_header', 200 ) );
+    $slider_h = absint( get_theme_mod( 'logo_max_height_slider', 120 ) );
+    $slider_w = absint( get_theme_mod( 'logo_max_width_slider', 300 ) );
+
+    $css  = ".site-header .custom-logo{max-height:{$desktop}px;max-width:{$width}px;}";
+    $css .= "@media (max-width:768px){.site-header .custom-logo{max-height:{$mobile}px;}}";
+    $css .= ".slider-logo{max-height:{$slider_h}px;max-width:{$slider_w}px;}";
+
+    wp_add_inline_style( 'veltia-main', $css );
+}
+add_action( 'wp_enqueue_scripts', 'veltia_custom_logo_css', 20 );
