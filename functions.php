@@ -8,7 +8,7 @@ function mi_tema_setup() {
 
     // Menú principal
     register_nav_menus(array(
-        'menu-principal' => __('Menú Principal', 'mi-tema'),
+        'menu-principal' => __('Menú Principal', 'veltia-base'),
     ));
 
     // Logo personalizado
@@ -30,9 +30,9 @@ add_action('after_setup_theme', 'mi_tema_setup');
 // ============================
 function mi_tema_widgets_init() {
     register_sidebar(array(
-        'name'          => __('Footer 1', 'mi-tema'),
+        'name'          => __('Footer 1', 'veltia-base'),
         'id'            => 'footer-1',
-        'description'   => __('Widgets en el primer área del footer', 'mi-tema'),
+        'description'   => __('Widgets en el primer área del footer', 'veltia-base'),
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h2 class="widget-title">',
@@ -40,9 +40,9 @@ function mi_tema_widgets_init() {
     ));
 
     register_sidebar(array(
-        'name'          => __('Footer 2', 'mi-tema'),
+        'name'          => __('Footer 2', 'veltia-base'),
         'id'            => 'footer-2',
-        'description'   => __('Widgets en el segundo área del footer', 'mi-tema'),
+        'description'   => __('Widgets en el segundo área del footer', 'veltia-base'),
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h2 class="widget-title">',
@@ -50,9 +50,9 @@ function mi_tema_widgets_init() {
     ));
 
     register_sidebar(array(
-        'name'          => __('Footer 3', 'mi-tema'),
+        'name'          => __('Footer 3', 'veltia-base'),
         'id'            => 'footer-3',
-        'description'   => __('Widgets en el tercer área del footer', 'mi-tema'),
+        'description'   => __('Widgets en el tercer área del footer', 'veltia-base'),
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h2 class="widget-title">',
@@ -67,7 +67,7 @@ add_action('widgets_init', 'mi_tema_widgets_init');
 // ============================
 function mi_tema_customize_hero($wp_customize) {
     $wp_customize->add_section('hero_section', array(
-        'title'    => __('Hero de Inicio', 'mi-tema'),
+        'title'    => __('Hero de Inicio', 'veltia-base'),
         'priority' => 30,
     ));
 
@@ -78,7 +78,7 @@ function mi_tema_customize_hero($wp_customize) {
         'sanitize_callback' => 'absint',
     ));
     $wp_customize->add_control('hero_slide_count', array(
-        'label' => __('Cantidad de diapositivas', 'mi-tema'),
+        'label' => __('Cantidad de diapositivas', 'veltia-base'),
         'section' => 'hero_section',
         'type' => 'number',
         'input_attrs' => array('min' => 1, 'max' => 5)
@@ -90,7 +90,7 @@ function mi_tema_customize_hero($wp_customize) {
         'sanitize_callback' => 'absint',
     ));
     $wp_customize->add_control('hero_height', array(
-        'label' => __('Altura del Hero (px)', 'mi-tema'),
+        'label' => __('Altura del Hero (px)', 'veltia-base'),
         'section' => 'hero_section',
         'type' => 'number',
     ));
@@ -101,7 +101,7 @@ function mi_tema_customize_hero($wp_customize) {
         'sanitize_callback' => 'sanitize_text_field',
     ));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_gradient_color1_control', array(
-        'label'    => __('Degradado - Color superior', 'mi-tema'),
+        'label'    => __('Degradado - Color superior', 'veltia-base'),
         'section'  => 'hero_section',
         'settings' => 'hero_gradient_color1',
     )));
@@ -110,7 +110,7 @@ function mi_tema_customize_hero($wp_customize) {
         'sanitize_callback' => 'sanitize_text_field',
     ));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_gradient_color2_control', array(
-        'label'    => __('Degradado - Color central', 'mi-tema'),
+        'label'    => __('Degradado - Color central', 'veltia-base'),
         'section'  => 'hero_section',
         'settings' => 'hero_gradient_color2',
     )));
@@ -119,7 +119,7 @@ function mi_tema_customize_hero($wp_customize) {
         'sanitize_callback' => 'sanitize_text_field',
     ));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_gradient_color3_control', array(
-        'label'    => __('Degradado - Color inferior', 'mi-tema'),
+        'label'    => __('Degradado - Color inferior', 'veltia-base'),
         'section'  => 'hero_section',
         'settings' => 'hero_gradient_color3',
     )));
@@ -130,7 +130,7 @@ function mi_tema_customize_hero($wp_customize) {
         'sanitize_callback' => 'sanitize_hex_color',
     ));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_cta_bg_color_control', array(
-        'label'    => __('Color de fondo del botón CTA', 'mi-tema'),
+        'label'    => __('Color de fondo del botón CTA', 'veltia-base'),
         'section'  => 'hero_section',
         'settings' => 'hero_cta_bg_color',
     )));
@@ -139,7 +139,7 @@ function mi_tema_customize_hero($wp_customize) {
         'sanitize_callback' => 'sanitize_hex_color',
     ));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_cta_bg_hover_color_control', array(
-        'label'    => __('Color de fondo del botón CTA (hover)', 'mi-tema'),
+        'label'    => __('Color de fondo del botón CTA (hover)', 'veltia-base'),
         'section'  => 'hero_section',
         'settings' => 'hero_cta_bg_hover_color',
     )));
@@ -152,7 +152,7 @@ function mi_tema_customize_hero($wp_customize) {
             'sanitize_callback' => 'esc_url_raw',
         ));
         $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "hero_image_{$i}_control", array(
-            'label' => __("Imagen Slide $i", 'mi-tema'),
+            'label' => __("Imagen Slide $i", 'veltia-base'),
             'section' => 'hero_section',
             'settings' => "hero_image_$i"
         )));
@@ -163,7 +163,7 @@ function mi_tema_customize_hero($wp_customize) {
             'sanitize_callback' => 'sanitize_text_field',
         ));
         $wp_customize->add_control("hero_title_$i", array(
-            'label' => __("Título Slide $i", 'mi-tema'),
+            'label' => __("Título Slide $i", 'veltia-base'),
             'section' => 'hero_section',
             'type' => 'text',
         ));
@@ -174,7 +174,7 @@ function mi_tema_customize_hero($wp_customize) {
             'sanitize_callback' => 'sanitize_text_field',
         ));
         $wp_customize->add_control("hero_subtitle_$i", array(
-            'label' => __("Subtítulo Slide $i", 'mi-tema'),
+            'label' => __("Subtítulo Slide $i", 'veltia-base'),
             'section' => 'hero_section',
             'type' => 'text',
         ));
@@ -185,7 +185,7 @@ function mi_tema_customize_hero($wp_customize) {
             'sanitize_callback' => 'sanitize_text_field',
         ));
         $wp_customize->add_control("hero_cta_text_$i", array(
-            'label' => __("Texto CTA Slide $i", 'mi-tema'),
+            'label' => __("Texto CTA Slide $i", 'veltia-base'),
             'section' => 'hero_section',
             'type' => 'text',
         ));
@@ -196,7 +196,7 @@ function mi_tema_customize_hero($wp_customize) {
             'sanitize_callback' => 'esc_url_raw',
         ));
         $wp_customize->add_control("hero_cta_url_$i", array(
-            'label' => __("Enlace CTA Slide $i", 'mi-tema'),
+            'label' => __("Enlace CTA Slide $i", 'veltia-base'),
             'section' => 'hero_section',
             'type' => 'url',
         ));
@@ -235,8 +235,8 @@ add_action('wp_head', 'mi_tema_customizer_css');
 // Cargar estilos y scripts
 // ============================
 function mi_tema_estilos() {
-    wp_enqueue_style('mi-tema-style', get_stylesheet_uri(), array(), wp_get_theme()->get('Version'));
-    wp_enqueue_style('mi-tema-google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap', array(), null);
+    wp_enqueue_style('veltia-base-style', get_stylesheet_uri(), array(), wp_get_theme()->get('Version'));
+    wp_enqueue_style('veltia-base-google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap', array(), null);
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css', array(), null);
     // Main theme stylesheet for custom components.
     wp_enqueue_style('veltia-main', get_template_directory_uri() . '/assets/css/main.css', array(), wp_get_theme()->get('Version'));
@@ -272,7 +272,7 @@ function mi_tema_customize_site_title($wp_customize) {
     ));
 
     $wp_customize->add_control('mostrar_titulo_sitio_control', array(
-        'label'    => __('Mostrar título del sitio', 'mi-tema'),
+        'label'    => __('Mostrar título del sitio', 'veltia-base'),
         'section'  => 'title_tagline',
         'type'     => 'checkbox',
     ));
@@ -286,16 +286,16 @@ add_action('customize_register', 'mi_tema_customize_site_title');
 function mi_tema_customize_menu_footer($wp_customize) {
     // Sección para el botón CTA del menú
     $wp_customize->add_section('menu_cta_section', array(
-        'title'    => __('Botón CTA del Menú', 'mi-tema'),
+        'title'    => __('Botón CTA del Menú', 'veltia-base'),
         'priority' => 40,
     ));
 
     $wp_customize->add_setting('menu_cta_text', array(
-        'default'           => __('Contáctanos', 'mi-tema'),
+        'default'           => __('Contáctanos', 'veltia-base'),
         'sanitize_callback' => 'sanitize_text_field',
     ));
     $wp_customize->add_control('menu_cta_text', array(
-        'label'   => __('Texto del botón', 'mi-tema'),
+        'label'   => __('Texto del botón', 'veltia-base'),
         'section' => 'menu_cta_section',
         'type'    => 'text',
     ));
@@ -305,14 +305,14 @@ function mi_tema_customize_menu_footer($wp_customize) {
         'sanitize_callback' => 'esc_url_raw',
     ));
     $wp_customize->add_control('menu_cta_url', array(
-        'label'   => __('URL del botón', 'mi-tema'),
+        'label'   => __('URL del botón', 'veltia-base'),
         'section' => 'menu_cta_section',
         'type'    => 'url',
     ));
 
     // Sección para elementos del footer
     $wp_customize->add_section('footer_section', array(
-        'title'    => __('Footer', 'mi-tema'),
+        'title'    => __('Footer', 'veltia-base'),
         'priority' => 50,
     ));
 
@@ -320,7 +320,7 @@ function mi_tema_customize_menu_footer($wp_customize) {
         'sanitize_callback' => 'sanitize_textarea_field',
     ));
     $wp_customize->add_control('footer_description', array(
-        'label'   => __('Descripción', 'mi-tema'),
+        'label'   => __('Descripción', 'veltia-base'),
         'section' => 'footer_section',
         'type'    => 'textarea',
     ));
@@ -338,18 +338,18 @@ function mi_tema_customize_menu_footer($wp_customize) {
             'sanitize_callback' => 'esc_url_raw',
         ));
         $wp_customize->add_control($setting, array(
-            'label'   => sprintf(__('URL %s', 'mi-tema'), $name),
+            'label'   => sprintf(__('URL %s', 'veltia-base'), $name),
             'section' => 'footer_section',
             'type'    => 'url',
         ));
     }
 
     $wp_customize->add_setting('footer_copy_text', array(
-        'default'           => __('Todos los derechos reservados', 'mi-tema'),
+        'default'           => __('Todos los derechos reservados', 'veltia-base'),
         'sanitize_callback' => 'sanitize_text_field',
     ));
     $wp_customize->add_control('footer_copy_text', array(
-        'label'   => __('Texto de copyright', 'mi-tema'),
+        'label'   => __('Texto de copyright', 'veltia-base'),
         'section' => 'footer_section',
         'type'    => 'text',
     ));
@@ -358,7 +358,7 @@ function mi_tema_customize_menu_footer($wp_customize) {
         'sanitize_callback' => 'esc_url_raw',
     ));
     $wp_customize->add_control('footer_privacy_url', array(
-        'label'   => __('URL Política de privacidad', 'mi-tema'),
+        'label'   => __('URL Política de privacidad', 'veltia-base'),
         'section' => 'footer_section',
         'type'    => 'url',
     ));
@@ -367,7 +367,7 @@ function mi_tema_customize_menu_footer($wp_customize) {
         'sanitize_callback' => 'esc_url_raw',
     ));
     $wp_customize->add_control('footer_cookies_url', array(
-        'label'   => __('URL Configuración cookies', 'mi-tema'),
+        'label'   => __('URL Configuración cookies', 'veltia-base'),
         'section' => 'footer_section',
         'type'    => 'url',
     ));

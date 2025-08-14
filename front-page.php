@@ -23,13 +23,13 @@ get_header();
                 $img = get_template_directory_uri() . '/assets/images/hero-default.jpg';
             }
             if (!$title) {
-                $title = __('Bienvenido a Veltia', 'mi-tema');
+                $title = __('Bienvenido a Veltia', 'veltia-base');
             }
             if (!$subtitle) {
-                $subtitle = __('Creamos soluciones digitales innovadoras.', 'mi-tema');
+                $subtitle = __('Creamos soluciones digitales innovadoras.', 'veltia-base');
             }
             if (!$cta_text) {
-                $cta_text = __('Contáctanos', 'mi-tema');
+                $cta_text = __('Contáctanos', 'veltia-base');
             }
             if (!$cta_url) {
                 $cta_url = home_url('/contacto');
