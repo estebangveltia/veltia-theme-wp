@@ -26,6 +26,43 @@ add_action('after_setup_theme', 'mi_tema_setup');
 
 
 // ============================
+// Áreas de widgets
+// ============================
+function mi_tema_widgets_init() {
+    register_sidebar(array(
+        'name'          => __('Footer 1', 'mi-tema'),
+        'id'            => 'footer-1',
+        'description'   => __('Widgets en el primer área del footer', 'mi-tema'),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ));
+
+    register_sidebar(array(
+        'name'          => __('Footer 2', 'mi-tema'),
+        'id'            => 'footer-2',
+        'description'   => __('Widgets en el segundo área del footer', 'mi-tema'),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ));
+
+    register_sidebar(array(
+        'name'          => __('Footer 3', 'mi-tema'),
+        'id'            => 'footer-3',
+        'description'   => __('Widgets en el tercer área del footer', 'mi-tema'),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ));
+}
+add_action('widgets_init', 'mi_tema_widgets_init');
+
+
+// ============================
 // Customizer: HERO DE INICIO
 // ============================
 function mi_tema_customize_hero($wp_customize) {
