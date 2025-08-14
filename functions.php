@@ -73,8 +73,9 @@ function mi_tema_customize_hero($wp_customize) {
 
     // Cantidad de slides
     $wp_customize->add_setting('hero_slide_count', array(
-        'default' => 1,
-        'transport' => 'refresh'
+        'default'           => 1,
+        'transport'         => 'refresh',
+        'sanitize_callback' => 'absint',
     ));
     $wp_customize->add_control('hero_slide_count', array(
         'label' => __('Cantidad de diapositivas', 'mi-tema'),
@@ -84,7 +85,10 @@ function mi_tema_customize_hero($wp_customize) {
     ));
 
     // Altura del Hero
-    $wp_customize->add_setting('hero_height', array('default' => 500));
+    $wp_customize->add_setting('hero_height', array(
+        'default'           => 500,
+        'sanitize_callback' => 'absint',
+    ));
     $wp_customize->add_control('hero_height', array(
         'label' => __('Altura del Hero (px)', 'mi-tema'),
         'section' => 'hero_section',
@@ -92,19 +96,28 @@ function mi_tema_customize_hero($wp_customize) {
     ));
 
     // Colores de degradado
-    $wp_customize->add_setting('hero_gradient_color1', array('default' => 'rgba(0,0,0,0.5)'));
+    $wp_customize->add_setting('hero_gradient_color1', array(
+        'default'           => 'rgba(0,0,0,0.5)',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_gradient_color1_control', array(
         'label'    => __('Degradado - Color superior', 'mi-tema'),
         'section'  => 'hero_section',
         'settings' => 'hero_gradient_color1',
     )));
-    $wp_customize->add_setting('hero_gradient_color2', array('default' => 'rgba(0,0,0,0.3)'));
+    $wp_customize->add_setting('hero_gradient_color2', array(
+        'default'           => 'rgba(0,0,0,0.3)',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_gradient_color2_control', array(
         'label'    => __('Degradado - Color central', 'mi-tema'),
         'section'  => 'hero_section',
         'settings' => 'hero_gradient_color2',
     )));
-    $wp_customize->add_setting('hero_gradient_color3', array('default' => 'rgba(0,0,0,0.6)'));
+    $wp_customize->add_setting('hero_gradient_color3', array(
+        'default'           => 'rgba(0,0,0,0.6)',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_gradient_color3_control', array(
         'label'    => __('Degradado - Color inferior', 'mi-tema'),
         'section'  => 'hero_section',
@@ -112,13 +125,19 @@ function mi_tema_customize_hero($wp_customize) {
     )));
 
     // Colores del botón CTA
-    $wp_customize->add_setting('hero_cta_bg_color', array('default' => '#0073e6'));
+    $wp_customize->add_setting('hero_cta_bg_color', array(
+        'default'           => '#0073e6',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_cta_bg_color_control', array(
         'label'    => __('Color de fondo del botón CTA', 'mi-tema'),
         'section'  => 'hero_section',
         'settings' => 'hero_cta_bg_color',
     )));
-    $wp_customize->add_setting('hero_cta_bg_hover_color', array('default' => '#005bb5'));
+    $wp_customize->add_setting('hero_cta_bg_hover_color', array(
+        'default'           => '#005bb5',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'hero_cta_bg_hover_color_control', array(
         'label'    => __('Color de fondo del botón CTA (hover)', 'mi-tema'),
         'section'  => 'hero_section',
@@ -129,7 +148,9 @@ function mi_tema_customize_hero($wp_customize) {
     $slide_count = get_theme_mod('hero_slide_count', 1);
     for ($i = 1; $i <= $slide_count; $i++) {
         // Imagen
-        $wp_customize->add_setting("hero_image_$i");
+        $wp_customize->add_setting("hero_image_$i", array(
+            'sanitize_callback' => 'esc_url_raw',
+        ));
         $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "hero_image_{$i}_control", array(
             'label' => __("Imagen Slide $i", 'mi-tema'),
             'section' => 'hero_section',
@@ -137,7 +158,10 @@ function mi_tema_customize_hero($wp_customize) {
         )));
 
         // Título
-        $wp_customize->add_setting("hero_title_$i", array('default' => "Título Slide $i"));
+        $wp_customize->add_setting("hero_title_$i", array(
+            'default'           => "Título Slide $i",
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
         $wp_customize->add_control("hero_title_$i", array(
             'label' => __("Título Slide $i", 'mi-tema'),
             'section' => 'hero_section',
@@ -145,7 +169,10 @@ function mi_tema_customize_hero($wp_customize) {
         ));
 
         // Subtítulo
-        $wp_customize->add_setting("hero_subtitle_$i", array('default' => "Subtítulo Slide $i"));
+        $wp_customize->add_setting("hero_subtitle_$i", array(
+            'default'           => "Subtítulo Slide $i",
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
         $wp_customize->add_control("hero_subtitle_$i", array(
             'label' => __("Subtítulo Slide $i", 'mi-tema'),
             'section' => 'hero_section',
@@ -153,7 +180,10 @@ function mi_tema_customize_hero($wp_customize) {
         ));
 
         // Botón CTA - Texto
-        $wp_customize->add_setting("hero_cta_text_$i", array('default' => "Contáctanos"));
+        $wp_customize->add_setting("hero_cta_text_$i", array(
+            'default'           => "Contáctanos",
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
         $wp_customize->add_control("hero_cta_text_$i", array(
             'label' => __("Texto CTA Slide $i", 'mi-tema'),
             'section' => 'hero_section',
@@ -161,7 +191,10 @@ function mi_tema_customize_hero($wp_customize) {
         ));
 
         // Botón CTA - URL
-        $wp_customize->add_setting("hero_cta_url_$i", array('default' => "#"));
+        $wp_customize->add_setting("hero_cta_url_$i", array(
+            'default'           => "#",
+            'sanitize_callback' => 'esc_url_raw',
+        ));
         $wp_customize->add_control("hero_cta_url_$i", array(
             'label' => __("Enlace CTA Slide $i", 'mi-tema'),
             'section' => 'hero_section',
@@ -223,8 +256,9 @@ add_action('wp_enqueue_scripts', 'mi_tema_scripts');
  */
 function mi_tema_customize_site_title($wp_customize) {
     $wp_customize->add_setting('mostrar_titulo_sitio', array(
-        'default'   => true,
-        'transport' => 'refresh',
+        'default'           => true,
+        'transport'         => 'refresh',
+        'sanitize_callback' => 'wp_validate_boolean',
     ));
 
     $wp_customize->add_control('mostrar_titulo_sitio_control', array(
