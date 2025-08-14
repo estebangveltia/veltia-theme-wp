@@ -37,6 +37,12 @@ get_header();
         ?>
         <div class="swiper-slide hero-slide" style="background-image:url('<?php echo esc_url($img); ?>');">
             <div class="hero-content">
+                <?php if ( has_custom_logo() ) :
+                    $logo_id  = get_theme_mod( 'custom_logo' );
+                    $logo_url = wp_get_attachment_image_url( $logo_id, 'full' );
+                ?>
+                    <img class="slider-logo" src="<?php echo esc_url( $logo_url ); ?>" style="max-height:<?php echo esc_attr( get_theme_mod( 'logo_max_height_slider', 120 ) ); ?>px; max-width:<?php echo esc_attr( get_theme_mod( 'logo_max_width_slider', 300 ) ); ?>px;" alt="<?php esc_attr_e( 'Site logo', 'veltia-base' ); ?>">
+                <?php endif; ?>
                 <?php if ($title): ?><h1><?php echo esc_html($title); ?></h1><?php endif; ?>
                 <?php if ($subtitle): ?><p><?php echo esc_html($subtitle); ?></p><?php endif; ?>
                 <?php if ($cta_text && $cta_url): ?>
