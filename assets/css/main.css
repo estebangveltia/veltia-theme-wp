@@ -1,0 +1,30 @@
+/* Styles for partners carousel */
+.partners-section {
+    padding: 2rem 0;
+}
+
+.partners-title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.partners-swiper {
+    width: 100%;
+}
+
+.partners-swiper .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.partners-swiper img {
+    max-width: 150px;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.partners-swiper img:hover {
+    transform: scale(1.05);
+}

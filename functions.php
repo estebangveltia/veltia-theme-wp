@@ -250,6 +250,15 @@ function mi_tema_scripts() {
 }
 add_action('wp_enqueue_scripts', 'mi_tema_scripts');
 
+// Enqueue assets for partners carousel
+function veltia_partners_assets() {
+    if ( is_front_page() ) {
+        wp_enqueue_style( 'veltia-partners', get_template_directory_uri() . '/assets/css/main.css', array(), wp_get_theme()->get( 'Version' ) );
+        wp_enqueue_script( 'veltia-partners', get_template_directory_uri() . '/assets/js/main.js', array( 'swiper-js' ), wp_get_theme()->get( 'Version' ), true );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'veltia_partners_assets' );
+
 
 /**
  * Mostrar / Ocultar título del sitio desde el Customizer
