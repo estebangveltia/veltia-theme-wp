@@ -52,6 +52,11 @@ get_header();
     <div class="swiper-button-prev"></div>
 </div>
 
+<?php
+// Include partners carousel section
+get_template_part( 'template-parts/partners' );
+?>
+
 <div class="homepage-content">
     <?php
     while (have_posts()) : the_post();
