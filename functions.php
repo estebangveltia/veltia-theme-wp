@@ -50,7 +50,7 @@ function veltia_theme_customize_register($wp_customize) {
         'sanitize_callback' => 'wp_validate_boolean',
     ]);
     $wp_customize->add_control('display_site_title', [
-        'label'   => __('Mostrar título del sitio si no hay logo', 'veltia'),
+        'label'   => __('Mostrar título del sitio', 'veltia'),
         'section' => 'title_tagline',
         'type'    => 'checkbox',
     ]);
