@@ -23,6 +23,9 @@
             ?>
         </div>
 
+        <!-- Botón toggle menú -->
+        <button class="menu-toggle"><span class="hamburger"></span></button>
+
         <!-- Menú principal + Botón CTA -->
         <nav class="main-nav">
             <?php
