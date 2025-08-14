@@ -1,9 +1,25 @@
-document.addEventListener('DOMContentLoaded', function() {
-    window.addEventListener('scroll', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.site-header');
+
+    function adjustOffset() {
+        const height = header ? header.offsetHeight : 0;
+        document.body.style.paddingTop = height + 'px';
+    }
+
+    adjustOffset();
+    window.addEventListener('resize', adjustOffset);
+
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 20) {
-            document.body.classList.add('scrolled');
+            if (!document.body.classList.contains('scrolled')) {
+                document.body.classList.add('scrolled');
+                adjustOffset();
+            }
         } else {
-            document.body.classList.remove('scrolled');
+            if (document.body.classList.contains('scrolled')) {
+                document.body.classList.remove('scrolled');
+                adjustOffset();
+            }
         }
     });
 });
