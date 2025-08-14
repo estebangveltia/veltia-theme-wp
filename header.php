@@ -38,9 +38,31 @@
             ?>
 
             <!-- Botón CTA -->
-            <?php if ( get_theme_mod('menu_cta_text') && get_theme_mod('menu_cta_url') ) : ?>
-                <a href="<?php echo esc_url(get_theme_mod('menu_cta_url')); ?>" class="menu-cta-button">
-                    <?php echo esc_html(get_theme_mod('menu_cta_text')); ?>
+            <?php if ( get_theme_mod( 'cta_enable' ) && get_theme_mod( 'cta_text' ) && get_theme_mod( 'cta_url' ) ) : ?>
+                <?php
+                $cta_classes = array( 'btn-cta' );
+                $cta_classes[] = 'is-' . get_theme_mod( 'cta_style_variant', 'filled' );
+                $cta_classes[] = 'is-' . get_theme_mod( 'cta_shape', 'pill' );
+                $cta_classes[] = 'is-' . get_theme_mod( 'cta_size', 'md' );
+                $cta_classes = array_map( 'sanitize_html_class', $cta_classes );
+                $cta_class_attr = implode( ' ', $cta_classes );
+
+                $cta_style = '';
+                $cta_bg    = get_theme_mod( 'cta_color_bg' );
+                $cta_text_color = get_theme_mod( 'cta_color_text' );
+                if ( $cta_bg ) {
+                    $cta_style .= 'background-color:' . esc_attr( $cta_bg ) . ';border-color:' . esc_attr( $cta_bg ) . ';';
+                }
+                if ( $cta_text_color ) {
+                    $cta_style .= 'color:' . esc_attr( $cta_text_color ) . ';';
+                }
+                $cta_style_attr = $cta_style ? ' style="' . esc_attr( $cta_style ) . '"' : '';
+
+                $cta_target = get_theme_mod( 'cta_target', '_self' );
+                $cta_target_attr = '_blank' === $cta_target ? ' target="_blank" rel="noopener"' : '';
+                ?>
+                <a href="<?php echo esc_url( get_theme_mod( 'cta_url' ) ); ?>" class="<?php echo esc_attr( $cta_class_attr ); ?>"<?php echo $cta_target_attr; ?><?php echo $cta_style_attr; ?> aria-label="<?php echo esc_attr( get_theme_mod( 'cta_text' ) ); ?>">
+                    <?php echo esc_html( get_theme_mod( 'cta_text' ) ); ?>
                 </a>
             <?php endif; ?>
         </nav>
