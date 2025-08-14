@@ -8,7 +8,7 @@ function mi_tema_setup() {
 
     // Menú principal
     register_nav_menus(array(
-        'menu-principal' => __('Menú Principal', 'veltia-base'),
+        'primary' => __('Menú Principal', 'veltia-base'),
     ));
 
     // Logo personalizado

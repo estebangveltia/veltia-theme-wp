@@ -30,7 +30,7 @@
         <nav class="main-nav">
             <?php
             wp_nav_menu(array(
-                'theme_location' => 'menu-principal',
+                'theme_location' => 'primary',
                 'container'      => false,
                 'menu_class'     => 'nav-menu',
                 'fallback_cb'    => false
