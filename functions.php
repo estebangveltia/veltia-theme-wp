@@ -233,3 +233,98 @@ function mi_tema_customize_site_title($wp_customize) {
     ));
 }
 add_action('customize_register', 'mi_tema_customize_site_title');
+
+
+// ============================
+// Customizer: Menú CTA y Footer
+// ============================
+function mi_tema_customize_menu_footer($wp_customize) {
+    // Sección para el botón CTA del menú
+    $wp_customize->add_section('menu_cta_section', array(
+        'title'    => __('Botón CTA del Menú', 'mi-tema'),
+        'priority' => 40,
+    ));
+
+    $wp_customize->add_setting('menu_cta_text', array(
+        'default'           => __('Contáctanos', 'mi-tema'),
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('menu_cta_text', array(
+        'label'   => __('Texto del botón', 'mi-tema'),
+        'section' => 'menu_cta_section',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('menu_cta_url', array(
+        'default'           => '#',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('menu_cta_url', array(
+        'label'   => __('URL del botón', 'mi-tema'),
+        'section' => 'menu_cta_section',
+        'type'    => 'url',
+    ));
+
+    // Sección para elementos del footer
+    $wp_customize->add_section('footer_section', array(
+        'title'    => __('Footer', 'mi-tema'),
+        'priority' => 50,
+    ));
+
+    $wp_customize->add_setting('footer_description', array(
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    $wp_customize->add_control('footer_description', array(
+        'label'   => __('Descripción', 'mi-tema'),
+        'section' => 'footer_section',
+        'type'    => 'textarea',
+    ));
+
+    $socials = array(
+        'instagram' => 'Instagram',
+        'linkedin'  => 'LinkedIn',
+        'facebook'  => 'Facebook',
+        'youtube'   => 'YouTube',
+    );
+
+    foreach ($socials as $slug => $name) {
+        $setting = "footer_social_{$slug}";
+        $wp_customize->add_setting($setting, array(
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+        $wp_customize->add_control($setting, array(
+            'label'   => sprintf(__('URL %s', 'mi-tema'), $name),
+            'section' => 'footer_section',
+            'type'    => 'url',
+        ));
+    }
+
+    $wp_customize->add_setting('footer_copy_text', array(
+        'default'           => __('Todos los derechos reservados', 'mi-tema'),
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('footer_copy_text', array(
+        'label'   => __('Texto de copyright', 'mi-tema'),
+        'section' => 'footer_section',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('footer_privacy_url', array(
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('footer_privacy_url', array(
+        'label'   => __('URL Política de privacidad', 'mi-tema'),
+        'section' => 'footer_section',
+        'type'    => 'url',
+    ));
+
+    $wp_customize->add_setting('footer_cookies_url', array(
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('footer_cookies_url', array(
+        'label'   => __('URL Configuración cookies', 'mi-tema'),
+        'section' => 'footer_section',
+        'type'    => 'url',
+    ));
+}
+add_action('customize_register', 'mi_tema_customize_menu_footer');
