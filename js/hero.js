@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
+    if (typeof heroData === 'undefined') {
+        console.error('heroData no está definido');
+        return;
+    }
+    console.log('heroData cargado:', heroData);
+
     const slides = document.querySelectorAll('.hero-slide');
 
     slides.forEach((slide) => {
